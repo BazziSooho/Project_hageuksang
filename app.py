@@ -5,6 +5,9 @@ from collections import defaultdict
 
 app = Flask(__name__)
 
+@app.context_processor
+def utility_processor():
+    return dict(enumerate=enumerate)
 
 class Player(NamedTuple):
     name: str
@@ -58,7 +61,15 @@ def index():
 
         teams = distribute_participants(participants, num_teams, team_size)
 
-        return render_template('results.html', teams=teams)
+        # 각 팀 내에서 이름으로 정렬
+        sorted_teams = [sorted(team, key=lambda x: x.name) for team in teams]
+
+        # 나머지 인원 계산
+        assigned_players = set(player.name for team in teams for player in team)
+        unassigned_players = [player for player in participants if player.name not in assigned_players]
+        unassigned_players.sort(key=lambda x: x.name)  # 나머지 인원도 이름으로 정렬
+
+        return render_template('results.html', teams=sorted_teams, unassigned_players=unassigned_players)
 
     players = read_csv_file('players_2.csv')
     return render_template('index.html', players=players)

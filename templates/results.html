@@ -9,17 +9,28 @@
 <body>
     <div class="container">
         <h1>팀 구성 결과</h1>
-        {% for i, team in enumerate(teams) %}
+        {% for team in teams %}
         <div class="team">
-            <h2>팀 {{ i+1 }}</h2>
-            <p>점수 총합: {{ team|sum(attribute='score') }}</p>
+            <h2>팀 {{ loop.index }}</h2>
             <ul>
                 {% for player in team %}
-                <li>{{ player.name }} - 점수: {{ player.score }}, 포지션: {{ player.position }}</li>
+                <li>{{ player.name }} - 포지션: {{ player.position }}</li>
                 {% endfor %}
             </ul>
         </div>
         {% endfor %}
+
+        {% if unassigned_players %}
+        <div class="unassigned">
+            <h2>미배정 인원</h2>
+            <ul>
+                {% for player in unassigned_players %}
+                <li>{{ player.name }} - 포지션: {{ player.position }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
         <a href="{{ url_for('index') }}" class="back-btn">다시 생성하기</a>
     </div>
 </body>

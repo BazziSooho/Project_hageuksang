@@ -19,7 +19,8 @@ h1 {
 }
 
 .form-group {
-    margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
 }
 
 label {
@@ -42,8 +43,8 @@ input[type="number"], input[type="checkbox"] {
 }
 
 .player-checkbox {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .player-checkbox input[type="checkbox"] {
@@ -90,4 +91,76 @@ ul {
 
 li {
     padding: 5px 0;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    width: 95%;
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .player-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .form-group input[type="number"] {
+    width: 100%;
+  }
+
+  .submit-btn {
+    width: 100%;
+  }
+
+  .team {
+    padding: 10px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .player-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .player-checkbox label {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .player-checkbox input[type="checkbox"] {
+    width: 24px;
+    height: 24px;
+  }
+
+  .submit-btn {
+    padding: 15px 20px;
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+}
+
+.unassigned {
+    background: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+.unassigned h2 {
+    color: #333;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
 }

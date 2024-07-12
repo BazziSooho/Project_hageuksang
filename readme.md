@@ -10,3 +10,4 @@ Key features include:
 - Displays results with team compositions and individual player details
 - Responsive design for both desktop and mobile viewing
 - Simple and intuitive user interface for easy team generation
+- use claude 3.5 sonnet for making codes and construction
