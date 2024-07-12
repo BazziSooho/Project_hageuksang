@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>팀 구성 결과</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>팀 구성 결과</h1>
+        {% for i, team in enumerate(teams) %}
+        <div class="team">
+            <h2>팀 {{ i+1 }}</h2>
+            <p>점수 총합: {{ team|sum(attribute='score') }}</p>
+            <ul>
+                {% for player in team %}
+                <li>{{ player.name }} - 점수: {{ player.score }}, 포지션: {{ player.position }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+        <a href="{{ url_for('index') }}" class="back-btn">다시 생성하기</a>
+    </div>
+</body>
+</html>
